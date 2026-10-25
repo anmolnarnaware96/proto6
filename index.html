@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Advocate Anmol Narnaware</title>
+<title>Adv Anmol Narnaware</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Libre+Franklin:wght@500;600&display=swap">
 <style>
 :root{--bg:#0d1014;--fg:#f3efe8;--mute:rgba(243,239,232,.68);--line:rgba(243,239,232,.22);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -43,7 +43,7 @@ button:focus-visible,#stage:focus-visible{outline:2px solid var(--fg);outline-of
 <canvas id="gl" aria-hidden="true"></canvas>
 <div class="shade"></div>
 <div class="count" id="count"></div>
-<div class="firm" id="firm"><span id="fn">Your Firm Name</span><span class="adv" id="adv">Advocate Anmol Narnaware</span></div>
+<div class="firm" id="firm"><span id="fn">Anmis Legal Firm</span><span class="adv" id="adv">Adv Anmol Narnaware</span></div>
 <div class="cap" id="cap"><h1 id="t"></h1><p id="d"></p><a class="book" id="book" href="tel:+91XXXXXXXXXX">Book an appointment</a></div>
 <button class="arrow l" id="prev" aria-label="Previous landscape"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
 <button class="arrow r" id="next" aria-label="Next landscape"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
@@ -53,8 +53,8 @@ button:focus-visible,#stage:focus-visible{outline:2px solid var(--fg);outline-of
 <script>
 /* ==================== EDIT HERE ====================
    1) YOUR DETAILS (keep the quote marks) */
-var FIRM_NAME="Your Firm Name";
-var ADVOCATE_NAME="Advocate Anmol Narnaware";
+var FIRM_NAME="Anmis Legal Firm";
+var ADVOCATE_NAME="Adv Anmol Narnaware";
 var PHONE="+91XXXXXXXXXX";   /* with country code, no spaces */
 
 /* 2) YOUR IMAGES, in slide order.
@@ -76,7 +76,7 @@ document.getElementById("book").href="tel:"+PHONE.replace(/[^0-9+]/g,"");
 document.title=ADVOCATE_NAME+" | "+FIRM_NAME;
 (function(){
 var SCENES=[
- {n:"Trusted legal counsel",d:"Clear advice and firm representation, from first consultation to final judgment.",sky:["#1b2a52","#e58a64","#ffd9a0"],sun:[.68,.55,.07,"#fff1cf"],m:["#40476e","#2d3358","#1a1f3d","#0d1024"],stars:.5,s:3},
+ {n:"High Court Lawyer",d:"Clear advice and firm representation, from first consultation to final judgment.",sky:["#1b2a52","#e58a64","#ffd9a0"],sun:[.68,.55,.07,"#fff1cf"],m:["#40476e","#2d3358","#1a1f3d","#0d1024"],stars:.5,s:3},
  {n:"A team behind every case",d:"Experienced advocates working together on your behalf.",sky:["#4f9ad8","#a9d6f0","#f6efd7"],sun:[.3,.2,.06,"#ffffff"],m:["#d6b27c","#c09459","#a8763f","#6e4a27"],stars:0,s:7},
  {n:"Prepared in every detail",d:"Careful research and sound strategy for every matter we take on.",sky:["#2e6f8f","#8ec5cf","#f2e4bd"],sun:[.5,.38,.05,"#fff8e1"],m:["#5d8296","#3c6074","#274758","#142b38"],stars:0,s:11},
  {n:"Standing by you",d:"Straight talk and steady support when it matters most.",sky:["#6a2340","#e8613a","#ffc26b"],sun:[.22,.6,.09,"#fff0c4"],m:["#a2452f","#74301f","#46201a","#1f0f12"],stars:0,s:19},
