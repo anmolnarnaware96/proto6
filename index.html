@@ -34,6 +34,10 @@ button:focus-visible,#stage:focus-visible{outline:2px solid var(--fg);outline-of
 .count{position:absolute;top:calc(env(safe-area-inset-top,0px) + 1.25rem);right:clamp(1.25rem,5vw,4rem);z-index:6;font:500 .9rem "Libre Franklin",Helvetica,Arial,sans-serif;color:var(--mute);font-variant-numeric:tabular-nums}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .strip button:first-child{margin-left:auto}.strip button:last-child{margin-right:auto}
+.pdfbtn{display:inline-block;margin-top:1.4rem;margin-left:.6rem;padding:.85rem 1.5rem;border-radius:999px;border:1.5px solid var(--fg);background:rgba(255,255,255,.08);color:var(--fg);font:600 .95rem/1 "Libre Franklin",Helvetica,Arial,sans-serif;letter-spacing:.03em;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .2s,background .2s}
+.pdfbtn:hover{transform:translateY(-2px);background:rgba(255,255,255,.22)}
+.pdfbtn[hidden]{display:none}
+@media (max-width:600px){.pdfbtn{display:block;margin-left:0;margin-top:.7rem;text-align:center;padding:1rem 1.2rem}}
 @media (max-width:600px){.strip button{width:56px;height:36px}.arrow{top:44%;width:38px;height:38px;margin-top:-19px}.count{display:none}.firm{font-size:clamp(2.3rem,12.5vw,3.4rem);max-width:90vw}.adv{font-size:1.05rem}.cap{bottom:5.75rem;left:1.25rem;right:1.25rem;max-width:none}.cap h1{font-size:clamp(1.6rem,7vw,2rem)}.book{display:block;text-align:center;padding:1.05rem 1.2rem;margin-top:1.1rem}}
 @media (max-height:520px){.cap p{display:none}.cap{bottom:1.25rem}.strip{display:none}.firm{font-size:clamp(1.8rem,6vw,3rem)}}
 </style>
@@ -44,7 +48,7 @@ button:focus-visible,#stage:focus-visible{outline:2px solid var(--fg);outline-of
 <div class="shade"></div>
 <div class="count" id="count"></div>
 <div class="firm" id="firm"><span id="fn">Anmis Legal Firm</span><span class="adv" id="adv">Adv Anmol Narnaware</span></div>
-<div class="cap" id="cap"><h1 id="t"></h1><p id="d"></p><a class="book" id="book" href="tel:+91XXXXXXXXXX">Book an appointment</a></div>
+<div class="cap" id="cap"><h1 id="t"></h1><p id="d"></p><a class="book" id="book" href="tel:+91XXXXXXXXXX">Book an appointment</a><a class="pdfbtn" id="pdf" href="#" target="_blank" rel="noopener" hidden>View PDF</a></div>
 <button class="arrow l" id="prev" aria-label="Previous landscape"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
 <button class="arrow r" id="next" aria-label="Next landscape"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
 <div class="strip" id="strip"></div>
@@ -69,6 +73,12 @@ var image3="images/image3.jpg";
 var image4="images/image4.jpg";
 var image5="images/image5.jpg";
 var IMAGES=[image1,image2,image3,image4,image5];
+
+/* 3) PDFs: one per slide, in slide order. Use "" for no button.
+   Slides 2, 3, 4 have PDFs; slides 1 and 5 have none.
+   Put the files in a "pdf" folder next to index.html. */
+var PDFS=["","pdf/document2.pdf","pdf/document3.pdf","pdf/document4.pdf",""];
+var PDF_LABELS=["","View our team profile","View our case process","View client guide",""];
 /* ===================================================== */
 document.getElementById("fn").textContent=FIRM_NAME;
 document.getElementById("adv").textContent=ADVOCATE_NAME;
@@ -115,6 +125,8 @@ function setText(){
  var cap=el("cap");cap.classList.add("out");
  setTimeout(function(){el("t").textContent=s.n;el("d").textContent=s.d;cap.classList.remove("out")},reduced?0:350);
  el("count").textContent=(active+1)+" of "+N;el("live").textContent=s.n+", "+(active+1)+" of "+N;
+ var pb=el("pdf"),pf=PDFS[active];
+ if(pf){pb.href=pf;pb.textContent=PDF_LABELS[active]||"View PDF";pb.hidden=false}else{pb.hidden=true}
  [].forEach.call(strip.children,function(b,i){b.setAttribute("aria-current",i===active)})}
 function go(n){n=((n%N)+N)%N;if(n===active)return;req={from:active,to:n};active=n;setText()}
 el("prev").onclick=function(){go(active-1)};el("next").onclick=function(){go(active+1)};
@@ -176,5 +188,4 @@ var sx=null;stage.onpointerdown=function(e){sx=e.clientX};
 stage.onpointerup=function(e){if(sx===null)return;var dx=e.clientX-sx;sx=null;if(Math.abs(dx)>48)go(active+(dx<0?1:-1))};
 })();
 </script>
-</body>
-</html>
+</body></html>
